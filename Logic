@@ -1,0 +1,59 @@
+const categoria1 = [{ "pergunta": "LLLL", "id": 1, "status": true },
+{"pergunta":"xxxx","id":2,"status":true}, {"pergunta":"nn","id":3,"status":true}]
+const categoria2 = [{ "pergunta": "AAA", "id": 5, "status": true },
+{"pergunta":"BBBB","id":6,"status":true}, {"pergunta":"kkkk","id":7,"status":true}]
+const categoria3=[{ "pergunta": "DDDD", "id": 8, "status": true },
+    { "pergunta": "ZZZ", "id": 9, "status": true }, { "pergunta": "SSSS", "id": 10, "status": true }]
+
+
+    //Escolhe a categoria 
+const EscolherCategoria = function (array) {
+    const Number = Math.floor(Math.random() * array.length);
+    const categoria = array[+Number];
+    console.log(categoria);
+
+    return categoria;
+}
+
+// Escolhe uma pergunta
+
+const EscolherPerguntaCerta = function (categoria) { 
+    let perguntaCerta;
+    try {
+         perguntaCerta = EscolherCategoria(categoria);
+        
+         
+    } catch (erro) {
+        console.log("ERRO ao gerar a pergunta");
+    }
+    return perguntaCerta;
+    //Como ter as perguntas erradas?
+}
+
+const EscolherPerguntasErradas = function(perguntaCerta, categoria){
+    let perguntaErradas = [];
+
+    try {
+        for (let i = 0; i < categoria.length; i++) {
+            if (perguntaCerta.id != categoria[i].id) {
+             perguntaErradas.push(categoria[i]);
+            }
+        }
+    } catch {
+        console.log("Erro ao gerar perguntas erradas");
+    }
+
+    return perguntaErradas;
+}
+
+const cc = EscolherCategoria([categoria1, categoria2, categoria3]);
+
+console.log("Pergunta certa");
+const pergunta_Certa = EscolherPerguntaCerta(cc);
+
+console.log("---------");
+const perguntas_Erradas = EscolherPerguntasErradas(pergunta_Certa, cc);
+// console.log("Pergunta errada");
+console.log(perguntas_Erradas);
+
+//Quando o usuário quiser escolher somente uma section ?
